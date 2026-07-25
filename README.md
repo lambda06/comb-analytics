@@ -10,7 +10,6 @@ A FastAPI service that scores D2C businesses across four signal categories — r
 
 ```bash
 # 1. Clone / enter the project directory
-cd "d:\Projects\AI\Hive Assignment"
 
 # 2. Create and activate the virtual environment
 python -m venv .venv
