@@ -4,17 +4,6 @@ A FastAPI service that scores D2C businesses across four signal categories — r
 
 ---
 
-## Table of Contents
-1. [Setup](#setup)
-2. [Running the API](#running-the-api)
-3. [Endpoints](#endpoints)
-4. [Architecture](#architecture)
-5. [Scoring Design](#scoring-design)
-6. [Edge Cases Handled](#edge-cases-handled)
-7. [What I'd Do Differently With More Time](#what-id-do-differently-with-more-time)
-
----
-
 ## Setup
 
 **Prerequisites:** Python 3.11+
@@ -25,16 +14,13 @@ cd "d:\Projects\AI\Hive Assignment"
 
 # 2. Create and activate the virtual environment
 python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # macOS / Linux
+.venv\Scripts\activate     
 
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Add your Gemini API key
+# 4. Add Gemini API key
 copy .env.example .env
-# Then open .env and set GEMINI_API_KEY=your_key_here
-# Get a free key at: https://aistudio.google.com/app/apikey
 ```
 
 ---
@@ -42,11 +28,8 @@ copy .env.example .env
 ## Running the API
 
 ```bash
-# Development (auto-reload on file changes)
 .venv\Scripts\uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
-# The interactive Swagger UI is available at:
-# http://localhost:8000/docs
 ```
 
 ---
@@ -60,30 +43,6 @@ copy .env.example .env
 | `GET` | `/score/all` | Score all businesses, sorted by composite score descending |
 | `GET` | `/score/{business_id}` | Score a single business (no LLM call) |
 | `GET` | `/score/{business_id}/explain` | Score + Gemini narrative explanation |
-
-### Example: Score BIZ-006
-
-```bash
-curl http://localhost:8000/score/BIZ-006
-```
-
-```json
-{
-  "business_id": "BIZ-006",
-  "business_name": "Verdant & Co. Teas",
-  "category": "Food & Beverage",
-  "composite_score": 60.9,
-  "signal_scores": {
-    "revenue":  { "score": 35.5, "confidence": 0.95, "factors": { "weighted_mom_growth": -4.96, "latest_mom_change": -36.89, ... } },
-    "reviews":  { "score": 63.3, "confidence": 0.55, "factors": { "avg_rating": 3.5, "pct_negative": 33.3, ... } },
-    "retention_support": { "score": 82.3, "confidence": 0.94, "factors": { "rpr": 0.47, "resolution_rate": 71.4, ... } },
-    "ad_efficiency": { "score": 63.7, "confidence": 0.95, "factors": { "avg_roas": 14.3, "latest_roas": 9.1, ... } }
-  },
-  "excluded_signals": [],
-  "low_confidence_warning": false,
-  "explanation": null
-}
-```
 
 > **Note:** The `/explain` endpoint requires `GEMINI_API_KEY` in `.env`. All scoring endpoints work without it.
 
@@ -131,14 +90,6 @@ The weighted average is then mapped to a 0–100 score via a **sigmoid function*
 score = 100 / (1 + e^(-0.12 × weighted_avg))
 ```
 
-- 0% growth → 50 (neutral midpoint, guaranteed)
-- +5% growth → 64.6 (healthy)
-- −5% growth → 35.4 (weakening)
-- −50% growth → 0.2 (catastrophic — distinct from −16% at 12.8)
-
-> **Why sigmoid over piecewise linear?** Piecewise linear collapses any growth below −15% to 0 and any growth above +5% to 100, losing discrimination at the extremes. The sigmoid maps every distinct input to a distinct output.
-
-Confidence is based on number of months of data (0.25 for 2 months → 0.95 for 10+).
 
 ---
 
@@ -170,16 +121,6 @@ effective_weight  = nominal_weight × sub_confidence
 signal_confidence = Σ(nominal_weight × sub_confidence)   # 0 to 1
 signal_score      = Σ(sub_score × eff_weight) / Σ(eff_weights)
 ```
-
-| RPR | Tickets | Signal Confidence | Behaviour |
-|-----|---------|-------------------|-----------|
-| Present | ≥ 20 | 0.94 | Both sub-signals fully weighted |
-| Present | 1–19 | 0.80 | RPR-dominant, thin support sample |
-| Present | 0 | 0.64 | RPR only; support gets neutral score |
-| null | Present | 0.20 | Support-only at low confidence |
-| null | null | 0.00 | Signal excluded entirely |
-
----
 
 ### 4. Ad Efficiency Scorer
 
@@ -218,28 +159,6 @@ The prompt is built programmatically from the computed `factors` dict, not from 
 - Confidence labels are explained in plain English to prevent the LLM contradicting them
 - Required to identify the strongest and weakest signals, not just list numbers
 - Required to note notable context (e.g. latest_revenue == peak_revenue)
-
----
-
-## Edge Cases Handled
-
-| Business | Scenario | Resolution |
-|----------|----------|------------|
-| BIZ-002 | Only 2 months revenue; RPR null + tickets present | Revenue conf = 0.25. Retention renormalises to support-only at conf = 0.20 |
-| BIZ-003 | Empty reviews `[]`; tickets.total = 0 | Reviews get score 50, conf 0.05. Support gets sub_conf 0.10, RPR dominates retention |
-| BIZ-005 | Reviews null; RPR null; tickets null | Reviews and retention excluded. Composite computed on 2 signals only |
-| BIZ-006 | 13 months positive, −36.9% cliff in final month | Linear decay amplifies cliff naturally. Sigmoid preserves discrimination vs flat decline |
-| Any | Unknown `business_id` | HTTP 404 with descriptive message |
-| Any | `GEMINI_API_KEY` not set | `/score/{id}` still works. `/explain` returns error in `explanation` field, does not crash |
-
----
-
-## What I'd Do Differently With More Time
-
-### Testing
-- **Unit tests** for every scorer with hand-verified inputs/outputs (pytest)
-- **Property-based tests** (Hypothesis) for the aggregator: confidence-weighted average should always equal a simple average when all confidences are equal
-- **Contract tests** for the API response shape (Pydantic validation catches most issues, but explicit endpoint tests give CI confidence)
 
 ### Signal Improvements
 - **Revenue:** Incorporate absolute revenue level, not just growth rate. A business doing $10M/month declining 5% is very different from a business doing $50K/month declining 5%
