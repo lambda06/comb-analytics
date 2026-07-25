@@ -1,0 +1,292 @@
+{
+  "businesses": [
+    {
+      "business_id": "BIZ-001",
+      "business_name": "Solstice Skincare",
+      "category": "Beauty & Personal Care",
+      "revenue_by_month": {
+        "2025-07": 412000,
+        "2025-08": 438000,
+        "2025-09": 455000,
+        "2025-10": 470000,
+        "2025-11": 481000,
+        "2025-12": 502000,
+        "2026-01": 519000,
+        "2026-02": 533000,
+        "2026-03": 540000,
+        "2026-04": 558000,
+        "2026-05": 571000,
+        "2026-06": 590000
+      },
+      "customer_reviews": [
+        {
+          "rating": 5,
+          "text": "Great texture, absorbs fast."
+        },
+        {
+          "rating": 4,
+          "text": "Good but a bit pricey."
+        },
+        {
+          "rating": 5,
+          "text": "Repeat buyer, love the packaging."
+        },
+        {
+          "rating": 2,
+          "text": "Broke me out unfortunately."
+        },
+        {
+          "rating": 5,
+          "text": "Best moisturizer I've used."
+        },
+        {
+          "rating": 4,
+          "text": "Works well, delivery was slow."
+        },
+        {
+          "rating": 5,
+          "text": "Skin feels amazing."
+        },
+        {
+          "rating": 3,
+          "text": "Average, nothing special."
+        }
+      ],
+      "repeat_purchase_rate": 0.34,
+      "customer_support_tickets": {
+        "total": 142,
+        "resolved_within_48h": 121,
+        "escalated": 9
+      },
+      "ad_spend_by_month": {
+        "2025-07": 38000,
+        "2025-08": 41000,
+        "2025-09": 44000,
+        "2025-10": 45000,
+        "2025-11": 47000,
+        "2025-12": 51000,
+        "2026-01": 53000,
+        "2026-02": 55000,
+        "2026-03": 54000,
+        "2026-04": 58000,
+        "2026-05": 60000,
+        "2026-06": 63000
+      }
+    },
+    {
+      "business_id": "BIZ-002",
+      "business_name": "Northwind Coffee Co.",
+      "category": "Food & Beverage",
+      "revenue_by_month": {
+        "2026-05": 58000,
+        "2026-06": 71000
+      },
+      "customer_reviews": [
+        {
+          "rating": 5,
+          "text": "Amazing blend, will reorder."
+        },
+        {
+          "rating": 4,
+          "text": "Good coffee, fast shipping."
+        }
+      ],
+      "repeat_purchase_rate": null,
+      "customer_support_tickets": {
+        "total": 6,
+        "resolved_within_48h": 5,
+        "escalated": 0
+      },
+      "ad_spend_by_month": {
+        "2026-05": 9000,
+        "2026-06": 12000
+      }
+    },
+    {
+      "business_id": "BIZ-003",
+      "business_name": "Ferro Fitness Gear",
+      "category": "Sports & Fitness",
+      "revenue_by_month": {
+        "2025-08": 220000,
+        "2025-09": 231000,
+        "2025-10": 225000,
+        "2025-11": 240000,
+        "2025-12": 255000,
+        "2026-01": 248000,
+        "2026-02": 262000,
+        "2026-03": 270000,
+        "2026-04": 265000,
+        "2026-05": 281000,
+        "2026-06": 290000
+      },
+      "customer_reviews": [],
+      "repeat_purchase_rate": 0.21,
+      "customer_support_tickets": {
+        "total": 0,
+        "resolved_within_48h": 0,
+        "escalated": 0
+      },
+      "ad_spend_by_month": {
+        "2025-08": 15000,
+        "2025-09": 16000,
+        "2025-10": 15500,
+        "2025-11": 17000,
+        "2025-12": 18000,
+        "2026-01": 17500,
+        "2026-02": 19000,
+        "2026-03": 20000,
+        "2026-04": 19500,
+        "2026-05": 21000,
+        "2026-06": 22000
+      }
+    },
+    {
+      "business_id": "BIZ-004",
+      "business_name": "Aster Home Textiles",
+      "category": "Home & Living",
+      "revenue_by_month": {
+        "2025-10": 340000,
+        "2025-11": 325000,
+        "2025-12": 310000,
+        "2026-01": 298000,
+        "2026-02": 275000,
+        "2026-03": 260000,
+        "2026-04": 241000,
+        "2026-05": 228000,
+        "2026-06": 210000
+      },
+      "customer_reviews": [
+        {
+          "rating": 4,
+          "text": "Nice quality bedsheets."
+        },
+        {
+          "rating": 2,
+          "text": "Order took 3 weeks to arrive."
+        },
+        {
+          "rating": 1,
+          "text": "Customer service never responded."
+        },
+        {
+          "rating": 3,
+          "text": "Decent but overpriced."
+        },
+        {
+          "rating": 2,
+          "text": "Color faded after one wash."
+        }
+      ],
+      "repeat_purchase_rate": 0.11,
+      "customer_support_tickets": {
+        "total": 88,
+        "resolved_within_48h": 31,
+        "escalated": 27
+      },
+      "ad_spend_by_month": {
+        "2025-10": 22000,
+        "2025-11": 23000,
+        "2025-12": 24000,
+        "2026-01": 25000,
+        "2026-02": 26000,
+        "2026-03": 27000,
+        "2026-04": 28000,
+        "2026-05": 29000,
+        "2026-06": 30000
+      }
+    },
+    {
+      "business_id": "BIZ-005",
+      "business_name": "Kavaru Kitchenware",
+      "category": "Home & Living",
+      "revenue_by_month": {
+        "2026-01": 95000,
+        "2026-02": 101000,
+        "2026-03": 98000,
+        "2026-04": 110000,
+        "2026-05": 115000,
+        "2026-06": 121000
+      },
+      "customer_reviews": null,
+      "repeat_purchase_rate": null,
+      "customer_support_tickets": null,
+      "ad_spend_by_month": {
+        "2026-01": 14000,
+        "2026-02": 15000,
+        "2026-03": 14500,
+        "2026-04": 16000,
+        "2026-05": 16500,
+        "2026-06": 17500
+      }
+    },
+    {
+      "business_id": "BIZ-006",
+      "business_name": "Verdant & Co. Teas",
+      "category": "Food & Beverage",
+      "revenue_by_month": {
+        "2025-05": 180000,
+        "2025-06": 185000,
+        "2025-07": 190000,
+        "2025-08": 188000,
+        "2025-09": 195000,
+        "2025-10": 201000,
+        "2025-11": 205000,
+        "2025-12": 210000,
+        "2026-01": 208000,
+        "2026-02": 215000,
+        "2026-03": 220000,
+        "2026-04": 222000,
+        "2026-05": 225000,
+        "2026-06": 142000
+      },
+      "customer_reviews": [
+        {
+          "rating": 5,
+          "text": "Lovely aroma, great packaging."
+        },
+        {
+          "rating": 5,
+          "text": "My go-to tea brand now."
+        },
+        {
+          "rating": 1,
+          "text": "Last order arrived damaged and support ignored me."
+        },
+        {
+          "rating": 4,
+          "text": "Consistent quality over the years."
+        },
+        {
+          "rating": 1,
+          "text": "Website was down, couldn't check out for a week."
+        },
+        {
+          "rating": 5,
+          "text": "Excellent as always."
+        }
+      ],
+      "repeat_purchase_rate": 0.47,
+      "customer_support_tickets": {
+        "total": 210,
+        "resolved_within_48h": 150,
+        "escalated": 41
+      },
+      "ad_spend_by_month": {
+        "2025-05": 12000,
+        "2025-06": 12500,
+        "2025-07": 13000,
+        "2025-08": 12800,
+        "2025-09": 13200,
+        "2025-10": 13500,
+        "2025-11": 14000,
+        "2025-12": 14200,
+        "2026-01": 14000,
+        "2026-02": 14500,
+        "2026-03": 15000,
+        "2026-04": 15200,
+        "2026-05": 15500,
+        "2026-06": 15600
+      }
+    }
+  ]
+}
